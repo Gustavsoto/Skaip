@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Skaip</string>
+    <string name="welcome_text">Welcome to Skaip</string>
+    <string name="sign_in_button">Sign In</string>
+    <string name="register_button">Register</string>
+    <string name="welcome_image">Welcome image</string>
+    <string name="logo_name">Skaip</string>
+    <string name="back_button">Back</string>
+</resources>
