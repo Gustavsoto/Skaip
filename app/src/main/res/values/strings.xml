@@ -6,4 +6,6 @@
     <string name="welcome_image">Welcome image</string>
     <string name="logo_name">Skaip</string>
     <string name="back_button">Back</string>
+    <string name="first_name">Name</string>
+    <string name="sign_in_title">Sign into Skaip</string>
 </resources>

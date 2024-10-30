@@ -8,25 +8,17 @@ import android.widget.Button;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class SignInActivity extends AppCompatActivity {
+public class HomeScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.sign_in_screen);
+        setContentView(R.layout.register_screen);
         Button backButton = findViewById(R.id.back_button);
-        Button signInButton = findViewById(R.id.sign_in_button);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignInActivity.this, WelcomeScreenActivity.class);
-                startActivity(intent);
-            }
-        });
-        signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SignInActivity.this, HomeScreenActivity.class);
+                Intent intent = new Intent(HomeScreenActivity.this, WelcomeScreenActivity.class);
                 startActivity(intent);
             }
         });
