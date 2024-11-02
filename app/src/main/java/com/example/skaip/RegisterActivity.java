@@ -10,7 +10,6 @@ import android.widget.EditText;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -26,8 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegisterActivity.this, WelcomeScreenActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 

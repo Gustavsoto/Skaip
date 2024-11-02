@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecoverActivity">
+    tools:context=".RecoverActivity"
+    android:background="@drawable/welcome_screen_background_image_20x9">
 
     <Button
         android:id="@+id/back_button"

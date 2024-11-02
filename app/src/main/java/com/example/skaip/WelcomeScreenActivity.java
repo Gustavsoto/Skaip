@@ -1,21 +1,15 @@
 package com.example.skaip;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
-
-import com.google.firebase.FirebaseApp;
 
 public class WelcomeScreenActivity extends AppCompatActivity {
 
