@@ -8,4 +8,12 @@
     <string name="back_button">Back</string>
     <string name="first_name">Name</string>
     <string name="sign_in_title">Sign into Skaip</string>
+    <string name="Home">Home</string>
+    <string name="username_hint">username</string>
+    <string name="password_hint">password</string>
+    <string name="sign_up_button">Sign up</string>
+    <string name="name">name</string>
+    <string name="course">course</string>
+    <string name="year">year</string>
+    <string name="email">email</string>
 </resources>
