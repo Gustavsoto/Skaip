@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -24,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.register_screen);
+        preferences = new Preferences(getApplicationContext());
 
         Button backButton = findViewById(R.id.back_button);
         nameLayout = findViewById(R.id.name);
@@ -56,11 +60,9 @@ public class RegisterActivity extends AppCompatActivity {
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
                     Toast.makeText(getApplicationContext(), "User successfully registered!", Toast.LENGTH_SHORT).show();
+                    preferences.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
+                    preferences.putString(Constants.KEY_USER_ID, documentReference.getId());
                     preferences.putString(Constants.KEY_NAME, nameLayout.getEditText().getText().toString().trim());
-                    preferences.putString(Constants.KEY_COURSE, courseLayout.getEditText().getText().toString().trim());
-                    preferences.putString(Constants.KEY_YEAR, yearLayout.getEditText().getText().toString().trim());
-                    preferences.putString(Constants.KEY_EMAIL, emailLayout.getEditText().getText().toString().trim());
-                    preferences.putString(Constants.KEY_PASSWORD, passwordLayout.getEditText().getText().toString().trim());
                     Intent intent = new Intent(getApplicationContext(), HomeScreenActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);

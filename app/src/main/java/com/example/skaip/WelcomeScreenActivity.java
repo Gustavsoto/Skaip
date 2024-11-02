@@ -15,7 +15,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 public class WelcomeScreenActivity extends AppCompatActivity {
-
+    private Preferences preferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         EdgeToEdge.enable(this);
