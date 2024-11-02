@@ -17,7 +17,7 @@
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="Email"
+        android:hint="E-mail"
         android:textColor="@color/white"
         android:inputType="text" />
 

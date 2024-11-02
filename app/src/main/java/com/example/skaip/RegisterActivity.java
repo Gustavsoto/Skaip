@@ -14,7 +14,6 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends AppCompatActivity {
-
     private FirebaseAuth mAuth;
 
     @Override
@@ -22,6 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.register_screen);
+
         Button backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,15 +37,19 @@ public class RegisterActivity extends AppCompatActivity {
         Button signUpButton = findViewById(R.id.buttonSignup);
 
         signUpButton.setOnClickListener(v -> {
+            //implement null checks for these
             String email = emailEditText.getText().toString();
             String password = passwordEditText.getText().toString();
 
             mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        Log.d("auth", "registered with email");
+                        Log.d("auth", "Registered with email");
+                        Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                        startActivity(intent);
+                        finish();
                     } else {
-                        Log.d("auth", "registered failed");
+                        Log.d("auth", "Registering failed");
                     }
                 });
         });

@@ -14,6 +14,12 @@
         android:theme="@style/Theme.Skaip"
         tools:targetApi="31">
         <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecoverActivity"
+            android:exported="false" />
+        <activity
             android:name=".WelcomeScreenActivity"
             android:exported="true">
             <intent-filter>
@@ -22,7 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"/>
+        <activity android:name=".RegisterActivity" />
         <activity android:name=".SignInActivity" />
     </application>
 

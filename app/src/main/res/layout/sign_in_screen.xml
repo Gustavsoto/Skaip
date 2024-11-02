@@ -13,11 +13,18 @@
         android:layout_marginTop="48dp"
         android:text="@string/back_button"/>
 
+    <Button
+        android:id="@+id/recover_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Recover password"/>
+
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="Username"
+        android:hint="E-mail"
         android:textColor="@color/white"
         android:inputType="text" />
 
