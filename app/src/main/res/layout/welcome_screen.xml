@@ -5,60 +5,67 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WelcomeScreenActivity">
-    <ImageView
-        android:foreground="@drawable/welcome_foreground"
+    tools:context=".WelcomeScreenActivity"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/welcome_screen_background_image_20x9">
+
+    <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/welcome_screen_background"
-        android:contentDescription="@string/welcome_image"
-        android:scaleType="centerCrop"/>
-    <ImageView
-        android:layout_width="212dp"
-        android:layout_height="218dp"
-        android:contentDescription="@string/logo_name"
-        android:src="@drawable/skaip"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.200"
-        />
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/welcome_text"
-        android:textStyle="bold"
-        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.490" />
+        android:columnCount="1"
+        android:rowCount="4"
+        android:padding="0dp"
+        android:layout_marginBottom="100dp">
 
-    <Button
-        android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="@string/sign_in_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.520"/>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="212dp"
+            android:layout_height="218dp"
+            android:contentDescription="@string/logo_name"
+            android:src="@drawable/skaip"
+            android:layout_gravity="center"/>
 
-    <Button
-        android:id="@+id/register_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="@string/register_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.600"/>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome_text"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"/>
 
+        <Button
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:width="240dp"
+            android:height="50dp"
+            android:background="@drawable/custom_button_default"
+            android:gravity="center"
+            android:text="@string/sign_in_button"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/register_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:width="240dp"
+            android:height="50dp"
+            android:background="@drawable/custom_button_default"
+            android:gravity="center"
+            android:text="@string/register_button"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+    </GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

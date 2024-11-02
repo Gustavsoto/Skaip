@@ -14,8 +14,6 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
-
 public class SignInActivity extends AppCompatActivity {
     private TextInputLayout emailLayout, passwordLayout;
     private Preferences preferences;
@@ -41,8 +39,7 @@ public class SignInActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), HomeScreenActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
         signInButton.setOnClickListener(new View.OnClickListener() {

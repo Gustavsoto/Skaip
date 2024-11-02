@@ -27,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
         preferences = new Preferences(getApplicationContext());
 
         Button backButton = findViewById(R.id.back_button);
+        Button signUpButton = findViewById(R.id.sign_up_button);
         nameLayout = findViewById(R.id.name);
         courseLayout = findViewById(R.id.course);
         yearLayout = findViewById(R.id.year);
@@ -34,6 +35,12 @@ public class RegisterActivity extends AppCompatActivity {
         passwordLayout = findViewById(R.id.password);
 
         backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //parbauda fieldus
