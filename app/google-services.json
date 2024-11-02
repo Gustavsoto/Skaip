@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "706410063291",
+    "project_id": "skaip-85bf7",
+    "storage_bucket": "skaip-85bf7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706410063291:android:f0fcb1adf97eb2c51e509e",
+        "android_client_info": {
+          "package_name": "com.example.skaip"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBg-5aLtg6yQS6lGcbIxH2PgilNL_J8-Ng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
