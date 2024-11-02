@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Top Panel -->
+    <RelativeLayout
+        android:id="@+id/top_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageButton
+            android:id="@+id/image_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/userIcon"
+            android:src="@drawable/baseline_arrow_back_ios_24"
+            android:background="@color/dark_blue"/>
+
+        <TextView
+            android:id="@+id/top_panel_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/add_group"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <!-- Group Content Layout -->
+    <RelativeLayout
+        android:id="@+id/group_content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top_panel"
+        android:layout_above="@id/button_create_group"
+        android:layout_marginTop="40dp">
+
+        <ImageView
+            android:id="@+id/group_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:background="@color/white"
+            android:scaleType="centerCrop" />
+
+        <EditText
+            android:id="@+id/edit_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/group_image"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/white"
+            android:hint="@string/enter_group_name"
+            android:textColorHint="@color/white"
+            android:padding="12dp"
+            android:gravity="center" />
+
+        <Spinner
+            android:id="@+id/string_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/edit_name"
+            android:backgroundTint="@color/white"
+            android:layout_marginTop="16dp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/button_create_group"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:text="@string/create_group"
+        android:background="@color/bright_orange"
+        android:textColor="@android:color/black" />
+
+</RelativeLayout>

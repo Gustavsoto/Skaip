@@ -16,4 +16,8 @@
     <string name="course">course</string>
     <string name="year">year</string>
     <string name="email">email</string>
+    <string name="userIcon">userIcon</string>
+    <string name="add_group">add group</string>
+    <string name="enter_group_name">Enter group name</string>
+    <string name="create_group">Create group</string>
 </resources>

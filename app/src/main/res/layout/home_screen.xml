@@ -49,4 +49,17 @@
             tools:ignore="HardcodedText" />
     </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/add_group"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/rounded_input_background"
+        android:contentDescription="image"
+        android:src="@drawable/baseline_add_24"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="HardcodedText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
