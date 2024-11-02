@@ -25,6 +25,7 @@
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".SignInActivity" />
         <activity android:name=".HomeScreenActivity" />
+        <activity android:name=".AddGroupActivity"/>
         <service
             android:name=".FirebaseMessagingService"
             android:exported="false">

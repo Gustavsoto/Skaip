@@ -28,6 +28,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.home_screen);
         ImageButton logOut = findViewById(R.id.logout);
+        ImageButton addGroup = findViewById(R.id.add_group);
         top_panel_text = findViewById(R.id.top_panel_text);
         ImageView user_icon = findViewById(R.id.user_icon);
         preferences = new Preferences(getApplicationContext());
@@ -37,6 +38,12 @@ public class HomeScreenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 signOut();
+            }
+        });
+        addGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AddGroupActivity.class));
             }
         });
     }
