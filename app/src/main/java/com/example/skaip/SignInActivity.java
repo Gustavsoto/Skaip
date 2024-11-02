@@ -24,7 +24,9 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.sign_in_screen);
+        //shared preferences
         preferences = new Preferences(getApplicationContext());
+        //automatiski ielogos ieksa ja glabajas signed in vertiba
         if(preferences.getBoolean(Constants.KEY_IS_SIGNED_IN)){
             Intent intent = new Intent(getApplicationContext(), HomeScreenActivity.class);
             startActivity(intent);
@@ -47,6 +49,7 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(validateFields()){
+                    //Galvena funkcija prieks logina
                     signIn();
                 }
             }
@@ -54,7 +57,9 @@ public class SignInActivity extends AppCompatActivity {
 
     }
     public void signIn(){
+        //Firebase datubaze
         FirebaseFirestore database = FirebaseFirestore.getInstance();
+        //Salidzina users tabulas email un password
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .whereEqualTo(Constants.KEY_EMAIL, emailLayout.getEditText().getText().toString())
                 .whereEqualTo(Constants.KEY_PASSWORD, passwordLayout.getEditText().getText().toString())
@@ -62,6 +67,7 @@ public class SignInActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful() && task.getResult() != null && !task.getResult().getDocuments().isEmpty()){
                         Toast.makeText(getApplicationContext(), "Successfully signed in", Toast.LENGTH_SHORT).show();
+                        //Uztaisa snapshotu tam, ko ieguva no datubazes un ieksa sharedPreferences saglaba
                         DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
                         preferences.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
                         preferences.putString(Constants.KEY_USER_ID, documentSnapshot.getId());
@@ -71,6 +77,7 @@ public class SignInActivity extends AppCompatActivity {
                         preferences.putString(Constants.KEY_PASSWORD, documentSnapshot.getString(Constants.KEY_PASSWORD));
                         preferences.putString(Constants.KEY_YEAR, documentSnapshot.getString(Constants.KEY_YEAR));
                         Intent intent = new Intent(getApplicationContext(), HomeScreenActivity.class);
+                        //Notira staku
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                     } else {
@@ -82,7 +89,7 @@ public class SignInActivity extends AppCompatActivity {
     public boolean validateFields() {
         boolean isValid = true;
 
-        // Validate email
+        //Valide epastu
         if (isEmpty(emailLayout)) {
             emailLayout.setError("Email is required");
             isValid = false;
@@ -93,7 +100,7 @@ public class SignInActivity extends AppCompatActivity {
             emailLayout.setError(null);
         }
 
-        // Validate password
+        //Valide paroli
         if (isEmpty(passwordLayout)) {
             passwordLayout.setError("Password is required");
             isValid = false;
@@ -106,6 +113,7 @@ public class SignInActivity extends AppCompatActivity {
 
         return isValid;
     }
+    //parbauda vai vispar kaut kas ievadits ieksa edit fielda
     private boolean isEmpty(TextInputLayout layout) {
         String input = layout.getEditText().getText().toString().trim();
         return TextUtils.isEmpty(input);

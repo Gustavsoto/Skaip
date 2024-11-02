@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class Preferences {
+    //shared prefereces klase, lai nav lieki jaraksta
     public final SharedPreferences sharedPreferences;
     public Preferences(Context context){
         sharedPreferences = context.getSharedPreferences(Constants.KEY_PREFERENCE_NAME, Context.MODE_PRIVATE);

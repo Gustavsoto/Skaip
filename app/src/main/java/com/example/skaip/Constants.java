@@ -1,6 +1,7 @@
 package com.example.skaip;
 
 public class Constants {
+    //konstantes lietotajam
     public static final String KEY_COLLECTION_USERS = "users";
     public static final String KEY_NAME = "name";
     public static final String KEY_COURSE = "course";

@@ -3,7 +3,6 @@ package com.example.skaip;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,8 +12,11 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessaging;
+
+import java.util.HashMap;
 
 public class HomeScreenActivity extends AppCompatActivity {
     private Preferences preferences;
@@ -30,11 +32,11 @@ public class HomeScreenActivity extends AppCompatActivity {
         ImageView user_icon = findViewById(R.id.user_icon);
         preferences = new Preferences(getApplicationContext());
         loadUserData();
+        getToken();
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), WelcomeScreenActivity.class);
-                startActivity(intent);
+                signOut();
             }
         });
     }
@@ -52,5 +54,20 @@ public class HomeScreenActivity extends AppCompatActivity {
         documentReference.update(Constants.KEY_FCM_TOKEN, token)
                 .addOnSuccessListener(unused -> Toast.makeText(getApplicationContext(), "Token successfully updated", Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(exception -> Toast.makeText(getApplicationContext(), "Error updating token", Toast.LENGTH_SHORT).show());
+    }
+    private void signOut(){
+        Toast.makeText(getApplicationContext(), "Logging out", Toast.LENGTH_SHORT).show();
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        DocumentReference documentReference =
+                database.collection(Constants.KEY_COLLECTION_USERS)
+                        .document(preferences.getString(Constants.KEY_USER_ID));
+        HashMap<String, Object> updates = new HashMap<>();
+        updates.put(Constants.KEY_FCM_TOKEN, FieldValue.delete());
+        documentReference.update(updates).addOnSuccessListener(unused -> {
+            preferences.clear();
+            startActivity(new Intent(getApplicationContext(), WelcomeScreenActivity.class));
+            finish();
+        })
+                .addOnFailureListener(exception -> Toast.makeText(getApplicationContext(), "Error signing out", Toast.LENGTH_SHORT).show());
     }
 }

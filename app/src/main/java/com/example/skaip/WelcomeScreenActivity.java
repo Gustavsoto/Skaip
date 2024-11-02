@@ -26,6 +26,7 @@ public class WelcomeScreenActivity extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //intents uz sign in
                 Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
                 startActivity(intent);
             }
@@ -33,10 +34,12 @@ public class WelcomeScreenActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //intents uz sign up
                 Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                 startActivity(intent);
             }
         });
+        //Kaut kads by default uzgeneretais
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

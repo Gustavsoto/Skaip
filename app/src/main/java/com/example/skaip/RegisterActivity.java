@@ -10,10 +10,6 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -27,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.register_screen);
+        //sharedpreferences seit
         preferences = new Preferences(getApplicationContext());
 
         Button backButton = findViewById(R.id.back_button);
@@ -39,7 +36,9 @@ public class RegisterActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //parbauda fieldus
                 if(validateFields()){
+                    //ja izdevas tad pieregistre lietotaju firebase
                     signUp();
                 }
             }
@@ -49,21 +48,26 @@ public class RegisterActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
     private void signUp(){
+        //firebase datubaze
         FirebaseFirestore database = FirebaseFirestore.getInstance();
+        //hashmaps kurs tiks padots datubazei, lai noglaba
         HashMap<String, Object> user = new HashMap<>();
         user.put(Constants.KEY_NAME, nameLayout.getEditText().getText().toString().trim());
         user.put(Constants.KEY_COURSE, courseLayout.getEditText().getText().toString().trim());
         user.put(Constants.KEY_YEAR, yearLayout.getEditText().getText().toString().trim());
         user.put(Constants.KEY_EMAIL, emailLayout.getEditText().getText().toString().trim());
         user.put(Constants.KEY_PASSWORD, passwordLayout.getEditText().getText().toString().trim());
+        //seit saglaba ievadito datubaze
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
                     Toast.makeText(getApplicationContext(), "User successfully registered!", Toast.LENGTH_SHORT).show();
+                    //Pievieno shared preferences
                     preferences.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
                     preferences.putString(Constants.KEY_USER_ID, documentReference.getId());
                     preferences.putString(Constants.KEY_NAME, nameLayout.getEditText().getText().toString().trim());
                     Intent intent = new Intent(getApplicationContext(), HomeScreenActivity.class);
+                    //Notira staku
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 })
@@ -118,7 +122,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         return isValid;
     }
-
+    //parbauda vai nav pilniba tukss
     private boolean isEmpty(TextInputLayout layout) {
         String input = layout.getEditText().getText().toString().trim();
         return TextUtils.isEmpty(input);
