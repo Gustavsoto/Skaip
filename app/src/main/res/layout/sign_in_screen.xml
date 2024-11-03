@@ -71,7 +71,7 @@
             android:layout_height="48dp"
             android:autofillHints="password"
             android:background="@drawable/rounded_input_background"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:padding="10dp"
             android:textColor="@color/black"
             android:textColorHint="@color/black"/>
