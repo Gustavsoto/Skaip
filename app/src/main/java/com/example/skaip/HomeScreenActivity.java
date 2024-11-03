@@ -1,7 +1,11 @@
 package com.example.skaip;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -16,11 +20,13 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 
 public class HomeScreenActivity extends AppCompatActivity {
     private Preferences preferences;
     private TextView top_panel_text;
+    private ImageView user_icon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +36,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         ImageButton logOut = findViewById(R.id.logout);
         ImageButton addGroup = findViewById(R.id.add_group);
         top_panel_text = findViewById(R.id.top_panel_text);
-        ImageView user_icon = findViewById(R.id.user_icon);
+        user_icon = findViewById(R.id.user_icon);
         preferences = new Preferences(getApplicationContext());
         loadUserData();
         getToken();
@@ -47,8 +53,27 @@ public class HomeScreenActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    private String encodeImage(Bitmap bitmap){
+        int previewWidth = 80;
+        int previewHeight = bitmap.getHeight() * previewWidth / bitmap.getWidth();
+        Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewWidth, previewHeight, false);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        previewBitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
+        byte[] bytes = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(bytes, Base64.DEFAULT);
+    }
+
+    private Bitmap decodeImage(String base64String){
+        byte[] decodedString = Base64.decode(base64String, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+    }
+
     private void loadUserData(){
         top_panel_text.setText(preferences.getString(Constants.KEY_NAME));
+        Bitmap profileImage = decodeImage(preferences.getString(Constants.KEY_PROFILE_IMAGE));
+        user_icon.setImageBitmap(profileImage);
     }
     private void getToken(){
         FirebaseMessaging.getInstance().getToken().addOnSuccessListener(this::updateFcmToken);

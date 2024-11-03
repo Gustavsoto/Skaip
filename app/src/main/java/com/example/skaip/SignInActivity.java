@@ -73,6 +73,7 @@ public class SignInActivity extends AppCompatActivity {
                         preferences.putString(Constants.KEY_NAME, documentSnapshot.getString(Constants.KEY_NAME));
                         preferences.putString(Constants.KEY_PASSWORD, documentSnapshot.getString(Constants.KEY_PASSWORD));
                         preferences.putString(Constants.KEY_YEAR, documentSnapshot.getString(Constants.KEY_YEAR));
+                        preferences.putString(Constants.KEY_PROFILE_IMAGE, documentSnapshot.getString(Constants.KEY_PROFILE_IMAGE));
                         Intent intent = new Intent(getApplicationContext(), HomeScreenActivity.class);
                         //Notira staku
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

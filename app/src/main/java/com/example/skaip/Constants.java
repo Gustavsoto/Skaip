@@ -17,4 +17,5 @@ public class Constants {
     public static final String KEY_GROUP_NAME = "groupName";
     public static final String KEY_GROUP_DESCRIPTION = "groupDescription";
     public static final String KEY_GROUP_FILE = "groupFile";
+    public static final String KEY_PROFILE_IMAGE = "profileImage";
 }

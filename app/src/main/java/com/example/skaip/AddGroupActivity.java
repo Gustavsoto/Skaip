@@ -32,7 +32,7 @@ import java.util.HashMap;
 public class AddGroupActivity extends AppCompatActivity {
     private String encodedImage, encodedFile;
     private TextView fileNameTextView;
-    private ImageView profileImage;
+    private ImageView groupImage;
     private EditText groupName, edit_description;
 
     @Override
@@ -44,7 +44,7 @@ public class AddGroupActivity extends AppCompatActivity {
         ImageButton back = findViewById(R.id.back_button);
         Button chooseFiles = findViewById(R.id.button_choose_file);
         Button createGroup = findViewById(R.id.button_create_group);
-        profileImage = findViewById(R.id.group_image);
+        groupImage = findViewById(R.id.group_image);
         fileNameTextView = findViewById(R.id.file_name);
         edit_description = findViewById(R.id.edit_description);
         groupName = findViewById(R.id.edit_name);
@@ -77,7 +77,7 @@ public class AddGroupActivity extends AppCompatActivity {
                 }
             }
         });
-        profileImage.setOnClickListener(new View.OnClickListener() {
+        groupImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -122,7 +122,7 @@ public class AddGroupActivity extends AppCompatActivity {
                         try {
                             InputStream inputStream = getContentResolver().openInputStream(imageUri);
                             Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                            profileImage.setImageBitmap(bitmap);
+                            groupImage.setImageBitmap(bitmap);
                             encodedImage = encodeImage(bitmap);
                         } catch (FileNotFoundException e){
                             e.printStackTrace();
