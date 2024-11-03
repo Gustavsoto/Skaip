@@ -21,4 +21,7 @@
     <string name="add_group">add group</string>
     <string name="enter_group_name">Enter group name</string>
     <string name="create_group">Create group</string>
+    <string name="enter_group_description">Description</string>
+    <string name="add_files">Add files</string>
+    <string name="file_text">Add course tests/tasks</string>
 </resources>

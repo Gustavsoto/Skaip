@@ -29,7 +29,6 @@
             android:textSize="20sp" />
     </RelativeLayout>
 
-    <!-- Group Content Layout -->
     <RelativeLayout
         android:id="@+id/group_content_layout"
         android:layout_width="match_parent"
@@ -55,16 +54,54 @@
             android:textColor="@color/white"
             android:hint="@string/enter_group_name"
             android:textColorHint="@color/white"
+            android:background="@android:color/transparent"
             android:padding="12dp"
             android:gravity="center" />
 
-        <Spinner
-            android:id="@+id/string_spinner"
+        <EditText
+            android:id="@+id/edit_description"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/edit_name"
-            android:backgroundTint="@color/white"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:hint="@string/enter_group_description"
+            android:textColorHint="@color/black"
+            android:background="@drawable/description_rounded_corners"
+            android:padding="12dp"
+            android:gravity="top"
+            android:minLines="3"
+            android:maxLines="5" />
+        <RelativeLayout
+            android:id="@+id/file_upload_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_description"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/description_rounded_corners">
+
+            <TextView
+                android:id="@+id/file_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="15dp"
+                android:text="@string/file_text"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/button_choose_file"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="@string/add_files" />
+
+        </RelativeLayout>
+
     </RelativeLayout>
 
     <Button
