@@ -26,4 +26,5 @@
     <string name="file_text">Add course tests/tasks</string>
     <string name="group_image_description">Group image</string>
     <string name="group_name">Group Name</string>
+    <string name="type_a_message">Type a message</string>
 </resources>
