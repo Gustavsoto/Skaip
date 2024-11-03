@@ -12,6 +12,7 @@
     <string name="username_hint">username</string>
     <string name="password_hint">password</string>
     <string name="sign_up_button">Sign up</string>
+    <string name="pick_image_button">Pick image</string>
     <string name="name">name</string>
     <string name="course">course</string>
     <string name="year">year</string>
