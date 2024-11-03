@@ -205,16 +205,16 @@ public class AddGroupActivity extends AppCompatActivity {
         group.put(Constants.KEY_GROUP_DESCRIPTION, edit_description.getText().toString().trim());
         //seit saglaba ievadito datubaze
         database.collection(Constants.KEY_COLLECTION_GROUPS)
-                .add(group)
-                .addOnSuccessListener(documentReference -> {
-                    Toast.makeText(getApplicationContext(), "Group registered successfully!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), HomeScreenActivity.class);
-                    //Notira staku
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                })
-                .addOnFailureListener(exception -> {
-                    Toast.makeText(getApplicationContext(), "Error registering the user", Toast.LENGTH_SHORT).show();
-                });
+            .add(group)
+            .addOnSuccessListener(documentReference -> {
+                Toast.makeText(getApplicationContext(), "Group registered successfully!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), HomeScreenActivity.class);
+                //Notira staku
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            })
+            .addOnFailureListener(exception -> {
+                Toast.makeText(getApplicationContext(), "Error registering the user", Toast.LENGTH_SHORT).show();
+            });
     }
 }
