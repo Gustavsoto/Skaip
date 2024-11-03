@@ -10,17 +10,23 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class HomeScreenActivity extends AppCompatActivity {
     private Preferences preferences;
     private TextView top_panel_text;
+    private RecyclerView groupRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +37,13 @@ public class HomeScreenActivity extends AppCompatActivity {
         ImageButton addGroup = findViewById(R.id.add_group);
         top_panel_text = findViewById(R.id.top_panel_text);
         ImageView user_icon = findViewById(R.id.user_icon);
+        groupRecyclerView = findViewById(R.id.groupsRecyclerView);
+        groupRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         preferences = new Preferences(getApplicationContext());
         loadUserData();
         getToken();
+        getGroups();
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +59,30 @@ public class HomeScreenActivity extends AppCompatActivity {
     }
     private void loadUserData(){
         top_panel_text.setText(preferences.getString(Constants.KEY_NAME));
+    }
+    private void getGroups(){
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        database.collection(Constants.KEY_COLLECTION_GROUPS)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful() && task.getResult() != null){
+                        List<Group> groups = new ArrayList<>();
+                        for(QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
+                            Group group = new Group();
+                            group.setName(queryDocumentSnapshot.getString(Constants.KEY_GROUP_NAME));
+                            group.setImage(queryDocumentSnapshot.getString(Constants.KEY_IMAGE));
+                            groups.add(group);
+                        }
+                        if(groups.size() > 0){
+                            GroupAdapter groupAdapter = new GroupAdapter(groups);
+                            groupRecyclerView.setAdapter(groupAdapter);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "There are no groups", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Token successfully updated", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
     private void getToken(){
         FirebaseMessaging.getInstance().getToken().addOnSuccessListener(this::updateFcmToken);

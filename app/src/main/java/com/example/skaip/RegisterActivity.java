@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
-                    Toast.makeText(getApplicationContext(), "User successfully registered!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Group successfully registered!", Toast.LENGTH_SHORT).show();
                     //Pievieno shared preferences
                     preferences.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
                     preferences.putString(Constants.KEY_USER_ID, documentReference.getId());

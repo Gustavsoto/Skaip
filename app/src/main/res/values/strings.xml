@@ -23,4 +23,6 @@
     <string name="enter_group_description">Description</string>
     <string name="add_files">Add files</string>
     <string name="file_text">Add course tests/tasks</string>
+    <string name="group_image_description">Group image</string>
+    <string name="group_name">Group Name</string>
 </resources>
