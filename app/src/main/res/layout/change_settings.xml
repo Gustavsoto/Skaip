@@ -3,59 +3,55 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/top_panel"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
         android:background="@color/darker_blue"
         android:orientation="horizontal"
-        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/logout"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@null"
-            android:contentDescription="@string/back_button"
-            android:src="@drawable/baseline_arrow_back_ios_24" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
+            android:padding="2dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:tint="@color/white"/>
 
         <TextView
             android:id="@+id/top_panel_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="16dp"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/user_settings"
             android:textColor="@android:color/white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:gravity="center" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/back"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="56dp"
+            android:layout_marginTop="24dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ImageView
-            android:id="@+id/user_icon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:contentDescription="image"
-            android:background="@drawable/rounded_input_background"
-            android:scaleType="centerCrop"
-            tools:ignore="HardcodedText" />
-    </LinearLayout>
-
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/profile_image"
-        android:background="@drawable/rounded_input_background"
         android:scaleType="centerCrop"
         app:layout_constraintTop_toBottomOf="@id/top_panel"
         app:layout_constraintStart_toStartOf="parent"
@@ -242,12 +238,14 @@
         android:id="@+id/save_preferences"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/save"
         android:layout_margin="16dp"
+        android:layout_marginBottom="80dp"
         android:backgroundTint="@color/bright_orange"
+        android:text="@string/save"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/change_fields_container" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

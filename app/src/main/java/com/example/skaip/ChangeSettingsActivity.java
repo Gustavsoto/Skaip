@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -43,6 +44,7 @@ public class ChangeSettingsActivity extends AppCompatActivity {
         Button changePassword = findViewById(R.id.buttonChangePassword);
         Button changeEmail = findViewById(R.id.buttonChangeEmail);
         Button saveChanges = findViewById(R.id.save_preferences);
+        AppCompatImageView backButton = findViewById(R.id.back);
         loadUserPreferences(name, Constants.KEY_NAME);
         loadUserPreferences(course, Constants.KEY_COURSE);
         loadUserPreferences(year, Constants.KEY_YEAR);
@@ -55,6 +57,12 @@ public class ChangeSettingsActivity extends AppCompatActivity {
         setFieldChangeListener(changePassword, password);
         setFieldChangeListener(changeEmail, email);
         saveChangesListener(saveChanges);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
     private void loadUserImage(ImageView image, String key){
         Bitmap profileImage = decodeImage(preferences.getString(key));

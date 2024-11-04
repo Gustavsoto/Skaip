@@ -3,51 +3,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/top_panel"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
         android:background="@color/darker_blue"
         android:orientation="horizontal"
-        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:contentDescription="@string/back_button"
-            android:src="@drawable/logout_svgrepo_com__1_" />
+            android:src="@drawable/logout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/top_panel_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="16dp"/>
 
         <TextView
             android:id="@+id/top_panel_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="16dp"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/Home"
             android:textColor="@android:color/white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:gravity="center" />
+            android:layout_marginTop="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/user_icon"
+            app:layout_constraintStart_toEndOf="@id/logout"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/user_icon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:contentDescription="image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@drawable/rounded_input_background"
+            android:contentDescription="image"
             android:scaleType="centerCrop"
-            tools:ignore="HardcodedText" />
-    </LinearLayout>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"

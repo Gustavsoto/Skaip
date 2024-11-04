@@ -21,6 +21,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -41,7 +42,7 @@ public class AddGroupActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.add_group_screen);
 
-        ImageButton back = findViewById(R.id.back_button);
+        AppCompatImageView back = findViewById(R.id.back_button);
         Button chooseFiles = findViewById(R.id.button_choose_file);
         Button createGroup = findViewById(R.id.button_create_group);
         groupImage = findViewById(R.id.group_image);

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,7 +42,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.home_screen);
 
-        ImageButton logOut = findViewById(R.id.logout);
+        AppCompatImageView logOut = findViewById(R.id.logout);
         ImageButton addGroup = findViewById(R.id.add_group);
         top_panel_text = findViewById(R.id.top_panel_text);
         user_icon = findViewById(R.id.user_icon);
