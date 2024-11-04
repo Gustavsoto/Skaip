@@ -135,7 +135,10 @@ public class RegisterActivity extends AppCompatActivity {
                 //Pievieno shared preferences
                 preferences.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
                 preferences.putString(Constants.KEY_USER_ID, documentReference.getId());
+                preferences.putString(Constants.KEY_COURSE, courseLayout.getEditText().getText().toString().trim());
+                preferences.putString(Constants.KEY_EMAIL, emailLayout.getEditText().getText().toString().trim());
                 preferences.putString(Constants.KEY_NAME, nameLayout.getEditText().getText().toString().trim());
+                preferences.putString(Constants.KEY_PASSWORD, passwordLayout.getEditText().getText().toString().trim());
                 preferences.putString(Constants.KEY_PROFILE_IMAGE, encodedImage.trim());
                 preferences.putString(Constants.KEY_PROFILE_IMAGE_TINY, encodedTinyImage.trim());
                 Intent intent = new Intent(getApplicationContext(), HomeScreenActivity.class);

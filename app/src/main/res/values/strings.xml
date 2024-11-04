@@ -26,5 +26,14 @@
     <string name="file_text">Add course tests/tasks</string>
     <string name="group_image_description">Group image</string>
     <string name="group_name">Group Name</string>
+    <string name="user_settings">settings</string>
+    <string name="save">Save</string>
+    <string name="profile_image">Profile image</string>
+    <string name="name_setter">Name:</string>
+    <string name="change">Change</string>
+    <string name="course_setter">Course:</string>
+    <string name="year_setter">Year:</string>
+    <string name="password_setter">Password:</string>
+    <string name="email_setter">Email:</string>
     <string name="type_a_message">Type a message</string>
 </resources>

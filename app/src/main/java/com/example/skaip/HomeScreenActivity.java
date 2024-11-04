@@ -33,7 +33,7 @@ public class HomeScreenActivity extends AppCompatActivity {
     private Preferences preferences;
     private TextView top_panel_text;
     private RecyclerView groupRecyclerView;
-    private ImageView user_icon;
+    private  ImageView user_icon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +64,13 @@ public class HomeScreenActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), AddGroupActivity.class));
             }
         });
+        user_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ChangeSettingsActivity.class));
+            }
+        });
+
     }
 
     private String encodeImage(Bitmap bitmap){
