@@ -1,0 +1,251 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_panel"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        android:background="@color/darker_blue"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
+            android:padding="2dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:tint="@color/white"/>
+
+        <TextView
+            android:id="@+id/top_panel_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/user_settings"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/back"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="56dp"
+            android:layout_marginTop="24dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/profile_image"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toBottomOf="@id/top_panel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/change_fields_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/settings_background_rounded"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_image">
+
+        <LinearLayout
+            android:id="@+id/nameContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
+
+            <EditText
+                android:id="@+id/name_field"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:inputType="text"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+                android:text="@string/name_setter"
+                android:enabled="false"
+                android:background="@android:color/transparent"
+                android:autofillHints="name"
+                android:importantForAutofill="yes"
+                tools:ignore="LabelFor" />
+
+            <Button
+                android:id="@+id/buttonChangeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/change" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/courseContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
+
+            <EditText
+                android:id="@+id/course_field"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:inputType="text"
+                android:text="@string/course_setter"
+                android:enabled="false"
+                android:background="@android:color/transparent"
+                android:autofillHints="name"
+                android:importantForAutofill="yes"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+                tools:ignore="LabelFor" />
+
+            <Button
+                android:id="@+id/buttonChangeCourse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/change" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/yearContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
+
+            <EditText
+                android:id="@+id/year_field"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:inputType="text"
+                android:text="@string/year_setter"
+                android:enabled="false"
+                android:background="@android:color/transparent"
+                android:autofillHints="name"
+                android:importantForAutofill="yes"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+                tools:ignore="LabelFor" />
+
+            <Button
+                android:id="@+id/buttonChangeYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/change" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/passwordContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
+
+            <EditText
+                android:id="@+id/password_field"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:inputType="textPassword"
+                android:text="@string/password_setter"
+                android:enabled="false"
+                android:background="@android:color/transparent"
+                android:autofillHints="name"
+                android:importantForAutofill="yes"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+                tools:ignore="LabelFor" />
+
+            <Button
+                android:id="@+id/buttonChangePassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/change" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/emailContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
+
+            <EditText
+                android:id="@+id/email_field"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:inputType="textEmailAddress"
+                android:text="@string/email_setter"
+                android:enabled="false"
+                android:background="@android:color/transparent"
+                android:autofillHints="name"
+                android:importantForAutofill="yes"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                tools:ignore="LabelFor" />
+
+            <Button
+                android:id="@+id/buttonChangeEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/change" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/save_preferences"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="80dp"
+        android:backgroundTint="@color/bright_orange"
+        android:text="@string/save"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/change_fields_container" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

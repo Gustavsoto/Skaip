@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <RelativeLayout
+        android:id="@+id/top_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/back_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:contentDescription="@string/userIcon"
+            android:src="@drawable/ic_back"
+            android:tint="@color/white"/>
+
+        <TextView
+            android:id="@+id/top_panel_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/add_group"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/group_content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top_panel"
+        android:layout_above="@id/button_create_group"
+        android:layout_marginTop="40dp">
+
+        <ImageView
+            android:id="@+id/group_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:background="@color/white"
+            android:scaleType="centerCrop" />
+
+        <EditText
+            android:id="@+id/edit_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/group_image"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/white"
+            android:hint="@string/enter_group_name"
+            android:textColorHint="@color/white"
+            android:background="@android:color/transparent"
+            android:padding="12dp"
+            android:gravity="center" />
+
+        <EditText
+            android:id="@+id/edit_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_name"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:hint="@string/enter_group_description"
+            android:textColorHint="@color/black"
+            android:background="@drawable/description_rounded_corners"
+            android:padding="12dp"
+            android:gravity="top"
+            android:minLines="3"
+            android:maxLines="5" />
+        <RelativeLayout
+            android:id="@+id/file_upload_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_description"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/description_rounded_corners">
+
+            <TextView
+                android:id="@+id/file_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="15dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="15dp"
+                android:text="@string/file_text"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/button_choose_file"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="@string/add_files" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/button_create_group"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:text="@string/create_group"
+        android:background="@color/bright_orange"
+        android:textColor="@android:color/black" />
+
+</RelativeLayout>
