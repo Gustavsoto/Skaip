@@ -30,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextInputLayout nameLayout, courseLayout, yearLayout, emailLayout, passwordLayout;
     private Preferences preferences;
     private String encodedImage;
+    private String encodedTinyImage;
     private ImageView profileImage;
 
     @Override
@@ -85,6 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
                             Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                             profileImage.setImageBitmap(bitmap);
                             encodedImage = encodeImage(bitmap);
+                            encodedTinyImage = encodeTinyImage(bitmap);
                         } catch (FileNotFoundException e){
                             e.printStackTrace();
                         }
@@ -93,11 +95,20 @@ public class RegisterActivity extends AppCompatActivity {
             }
     );
     private String encodeImage(Bitmap bitmap){
-        int previewWidth = 80;
+        int previewWidth = 144;
         int previewHeight = bitmap.getHeight() * previewWidth / bitmap.getWidth();
         Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewWidth, previewHeight, false);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         previewBitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
+        byte[] bytes = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(bytes, Base64.DEFAULT);
+    }
+    private String encodeTinyImage(Bitmap bitmap){
+        int previewWidth = 32;
+        int previewHeight = bitmap.getHeight() * previewWidth / bitmap.getWidth();
+        Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewWidth, previewHeight, false);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        previewBitmap.compress(Bitmap.CompressFormat.JPEG, 30, byteArrayOutputStream);
         byte[] bytes = byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(bytes, Base64.DEFAULT);
     }
@@ -115,6 +126,7 @@ public class RegisterActivity extends AppCompatActivity {
         user.put(Constants.KEY_EMAIL, emailLayout.getEditText().getText().toString().trim());
         user.put(Constants.KEY_PASSWORD, passwordLayout.getEditText().getText().toString().trim());
         user.put(Constants.KEY_PROFILE_IMAGE, encodedImage.trim());
+        user.put(Constants.KEY_PROFILE_IMAGE_TINY, encodedTinyImage.trim());
         //seit saglaba ievadito datubaze
         database.collection(Constants.KEY_COLLECTION_USERS)
             .add(user)
@@ -125,6 +137,7 @@ public class RegisterActivity extends AppCompatActivity {
                 preferences.putString(Constants.KEY_USER_ID, documentReference.getId());
                 preferences.putString(Constants.KEY_NAME, nameLayout.getEditText().getText().toString().trim());
                 preferences.putString(Constants.KEY_PROFILE_IMAGE, encodedImage.trim());
+                preferences.putString(Constants.KEY_PROFILE_IMAGE_TINY, encodedTinyImage.trim());
                 Intent intent = new Intent(getApplicationContext(), HomeScreenActivity.class);
                 //Notira staku
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

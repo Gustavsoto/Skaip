@@ -1,10 +1,15 @@
 package com.example.skaip.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +20,7 @@ import com.example.skaip.Preferences;
 import com.example.skaip.R;
 import com.example.skaip.models.Message;
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -33,8 +39,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     public int getItemViewType(int position) {
         Message message = messages.get(position);
         String userId = preferences.getString(Constants.KEY_USER_ID);
-        Log.d("id", "id of msg: " + message.getSenderId());
-        Log.d("id", "id of usr " + userId);
         return message.sentByUser(userId) ? 1 : 0;
     }
 
@@ -52,32 +56,49 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         return new MessageViewHolder(view);
     }
 
-    // Provides data for the created MessageViewHolder(view) element
+    // Sets data in the created MessageViewHolder(view) element
     @Override
     public void onBindViewHolder(@NonNull MessageAdapter.MessageViewHolder holder, int position) {
         Message message = messages.get(position);
         holder.messageContent.setText(message.getText());
-        //holder.senderId.setText(message.getSenderId());
+        String userId = preferences.getString(Constants.KEY_USER_ID);
         holder.timestamp.setText(timestampFormat(message.getTimestamp()));
+
+        if (message.sentByUser(userId)) {
+            holder.senderUsername.setVisibility(View.GONE);
+            holder.senderImage.setVisibility(View.GONE);
+        }
+        else {
+            holder.senderImage.setImageBitmap(decodeImage(message.getEncodedImage()));
+            holder.senderImage.setVisibility(View.VISIBLE);
+            holder.senderUsername.setText(message.getSenderName());
+            holder.senderUsername.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     public int getItemCount() {
-        Log.d("ChatActivity", "item count: " + messages.size());
         return messages.size();
     }
 
     static class MessageViewHolder extends RecyclerView.ViewHolder {
         TextView timestamp;
         TextView messageContent;
-        TextView senderId;
+        TextView senderUsername;
+        ImageView senderImage;
 
         MessageViewHolder(View itemView) {
             super(itemView);
             messageContent = itemView.findViewById(R.id.textMessage);
-            //senderId = itemView.findViewById(R.id.textName);
+            senderUsername = itemView.findViewById(R.id.textUsername);
+            senderImage = itemView.findViewById(R.id.imageProfile);
             timestamp = itemView.findViewById(R.id.textDateTime);
         }
+    }
+
+    private Bitmap decodeImage(String base64String){
+        byte[] decodedString = Base64.decode(base64String, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
     }
 
     private String timestampFormat(Timestamp timestamp) {

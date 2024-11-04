@@ -3,7 +3,6 @@ package com.example.skaip;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -86,6 +85,8 @@ public class ChatActivity extends AppCompatActivity {
             message.put("senderId", preferences.getString(Constants.KEY_USER_ID));
             message.put("text", content);
             message.put("timestamp", FieldValue.serverTimestamp());
+            message.put("senderName", preferences.getString(Constants.KEY_NAME));
+            message.put("encodedImage", preferences.getString(Constants.KEY_PROFILE_IMAGE_TINY));
 
             Intent intent = getIntent();
             String groupId = intent.getStringExtra("groupId");
@@ -93,7 +94,7 @@ public class ChatActivity extends AppCompatActivity {
             database.collection("groups").document(groupId).collection("messages")
                 .add(message)
                 .addOnSuccessListener(documentReference -> {
-                    Toast.makeText(getApplicationContext(), "Sent message ID: " + documentReference.getId(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Sent message", Toast.LENGTH_SHORT).show();
                     messageEditText.setText("");
                 })
                 .addOnFailureListener(e -> {
@@ -115,7 +116,6 @@ public class ChatActivity extends AppCompatActivity {
                     for (DocumentSnapshot document : querySnapshot.getDocuments()) {
                         Message message = document.toObject(Message.class);
                         messageList.add(message);
-                        Log.d("msg", "Found message: " + message.getText());
                     }
                     messageAdapter.notifyDataSetChanged();
                     recyclerView.scrollToPosition(messageList.size() - 1);
