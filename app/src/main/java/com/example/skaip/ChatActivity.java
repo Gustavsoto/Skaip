@@ -1,10 +1,14 @@
 package com.example.skaip;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,18 +54,20 @@ public class ChatActivity extends AppCompatActivity {
         sendButton = findViewById(R.id.layoutSend);
         groupName = findViewById(R.id.textName);
         messageList = new ArrayList<>();
-        messageAdapter = new MessageAdapter(messageList);
+        preferences = new Preferences(getApplicationContext());
+        messageAdapter = new MessageAdapter(messageList, getApplicationContext());
+        ImageView backButton = findViewById(R.id.imageBack);
 
         recyclerView = findViewById(R.id.chatRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(messageAdapter);
 
-        preferences = new Preferences(getApplicationContext());
         database = FirebaseFirestore.getInstance();
 
         loadGroupName();
         loadMessages(intent.getStringExtra("groupId"));
         sendButton.setOnClickListener(v -> sendMessage());
+        backButton.setOnClickListener(v -> finish());
     }
     private void loadGroupName() {
         String groupNameString = intent.getStringExtra("groupName");
@@ -77,7 +83,7 @@ public class ChatActivity extends AppCompatActivity {
         if (!content.isEmpty()) {
 
             Map<String, Object> message = new HashMap<>();
-            message.put("senderId", preferences.getString(Constants.KEY_NAME));
+            message.put("senderId", preferences.getString(Constants.KEY_USER_ID));
             message.put("text", content);
             message.put("timestamp", FieldValue.serverTimestamp());
 

@@ -17,6 +17,9 @@ public class Message implements Serializable {
         this.timestamp = timestamp;
     }
 
+    public boolean sentByUser(String userId) {
+        return senderId.equals(userId);
+    }
     public String getSenderId() {
         return senderId;
     }
