@@ -12,8 +12,7 @@
         android:background="@color/bright_orange"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@id/textMessage"
-        app:layout_constraintStart_toStartOf="parent"
-        app:riv_oval="true"/>
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/textMessage"

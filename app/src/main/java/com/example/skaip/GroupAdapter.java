@@ -1,5 +1,6 @@
 package com.example.skaip;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -15,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHolder> {
-
     private List<Group> groupList;
 
     public GroupAdapter(List<Group> groupList) {
@@ -33,6 +33,14 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.GroupViewHol
     public void onBindViewHolder(@NonNull GroupViewHolder holder, int position) {
         Group group = groupList.get(position);
         holder.setGroupData(group);
+
+        //added
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), ChatActivity.class);
+            intent.putExtra("groupId", group.getId());
+            intent.putExtra("groupName", group.getName());
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override

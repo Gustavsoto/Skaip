@@ -29,6 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class HomeScreenActivity extends AppCompatActivity {
+
     private Preferences preferences;
     private TextView top_panel_text;
     private RecyclerView groupRecyclerView;
@@ -39,6 +40,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.home_screen);
+
         ImageButton logOut = findViewById(R.id.logout);
         ImageButton addGroup = findViewById(R.id.add_group);
         top_panel_text = findViewById(R.id.top_panel_text);
@@ -63,7 +65,6 @@ public class HomeScreenActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private String encodeImage(Bitmap bitmap){
         int previewWidth = 80;
@@ -96,6 +97,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                             Group group = new Group();
                             group.setName(queryDocumentSnapshot.getString(Constants.KEY_GROUP_NAME));
                             group.setImage(queryDocumentSnapshot.getString(Constants.KEY_IMAGE));
+                            group.setId(queryDocumentSnapshot.getId());
                             groups.add(group);
                         }
                         if(groups.size() > 0){
