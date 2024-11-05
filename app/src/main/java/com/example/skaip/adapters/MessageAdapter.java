@@ -3,6 +3,8 @@ package com.example.skaip.adapters;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.media.Image;
 import android.util.Base64;
 import android.util.Log;
@@ -97,6 +99,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     }
 
     private Bitmap decodeImage(String base64String){
+        if (base64String == null || base64String.isEmpty()) {
+            Bitmap black = Bitmap.createBitmap(32, 32, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(black);
+            canvas.drawColor(Color.BLACK);
+            return black;
+        }
         byte[] decodedString = Base64.decode(base64String, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
     }
